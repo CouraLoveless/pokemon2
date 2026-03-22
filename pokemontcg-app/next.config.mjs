@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
-};
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.pokemontcg.io' },
+      { protocol: 'https', hostname: 'images.scrydex.com' },
+    ],
+  },
+}
 
-export default nextConfig;
+export default nextConfig
