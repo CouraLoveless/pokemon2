@@ -9,40 +9,32 @@ export default function Pagination({ totalCount }) {
   const totalPages = Math.ceil(totalCount / pageSize)
   if (totalPages <= 1) return null
 
-  const btnStyle = {
-    fontFamily: 'var(--font-display)',
-    fontSize: '9px',
-    color: '#fff',
-    background: '#880000',
-    border: '2px solid #660000',
-    padding: '6px 10px',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    letterSpacing: '1px',
-    alignObject: 'center',
-  }
-
-  const disabledStyle = {
-    ...btnStyle,
-    opacity: 0.3,
-    cursor: 'not-allowed',
-  }
+  const btn = (disabled, label, onClick) => (
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: '7px',
+        color: disabled ? '#334' : '#aac8ff',
+        background: 'rgba(0,0,0,0.3)',
+        border: '1px solid rgba(255,255,255,0.1)',
+        padding: '5px 10px',
+        borderRadius: '4px',
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        letterSpacing: '1px',
+        opacity: disabled ? 0.4 : 1,
+      }}
+    >{label}</button>
+  )
 
   return (
-    <div className="flex items-center gap-3">
-      <button
-        disabled={page <= 1}
-        onClick={() => dispatch(setPage(page - 1))}
-        style={page <= 1 ? disabledStyle : btnStyle}
-      >◀ PREV</button>
-      <span style={{ fontFamily: 'var(--font-display)', fontSize: '8px', color: 'rgba(255,255,255,0.5)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      {btn(page <= 1, '◀ PREV', () => dispatch(setPage(page - 1)))}
+      <span style={{ fontFamily: 'var(--font-display)', fontSize: '6px', color: 'rgba(255,255,255,0.4)' }}>
         {page}/{totalPages}
       </span>
-      <button
-        disabled={page >= totalPages}
-        onClick={() => dispatch(setPage(page + 1))}
-        style={page >= totalPages ? disabledStyle : btnStyle}
-      >NEXT ▶</button>
+      {btn(page >= totalPages, 'NEXT ▶', () => dispatch(setPage(page + 1)))}
     </div>
   )
 }

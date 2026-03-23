@@ -106,7 +106,7 @@ export default function CardDetailModal({ cardId, prefetchedCard, onClose }) {
         onClick={e => e.stopPropagation()}
         style={{
           background: '#0d0000',
-          border: '3px solid #cc0000',
+          border: '3px solid var(--color-blue-dark)',
           borderRadius: '12px',
           width: '100%',
           maxWidth: '560px',
@@ -115,7 +115,7 @@ export default function CardDetailModal({ cardId, prefetchedCard, onClose }) {
           overflow: 'hidden',
         }}>
         
-        <div style={{ background: '#cc0000', padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ background: 'var(--color-blue-dark)', padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ ...px, fontSize: '9px', color: '#fff', letterSpacing: '1px' }}>CARD DATA</span>
           <button onClick={onClose} style={{ ...px, fontSize: '9px', color: '#fff', background: 'transparent', border: 'none', cursor: 'pointer' }}>✕</button>
         </div>
@@ -134,7 +134,7 @@ export default function CardDetailModal({ cardId, prefetchedCard, onClose }) {
                     <circle cx="24" cy="24" r="2.5" fill="#555"/>
                   </svg>
                 </div>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: '7px', color: '#ff4444', letterSpacing: '1px' }}>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: '7px', color: 'var(--color-accent)', letterSpacing: '1px' }}>
                   LOADING...
                 </p>
               </div>
@@ -151,7 +151,7 @@ export default function CardDetailModal({ cardId, prefetchedCard, onClose }) {
 
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <div>
-                  <p style={{ ...px, fontSize: '14px', color: '#ff4444', letterSpacing: '1px' }}>{card.name?.toUpperCase()}</p>
+                  <p style={{ ...px, fontSize: '14px', color: 'var(--color-accent)', letterSpacing: '1px' }}>{card.name?.toUpperCase()}</p>
                   <p style={{ ...px, fontSize: '8px', color: 'var(--color-muted)', marginTop: '4px' }}>{card.set?.name?.toUpperCase()} · {card.number}/{card.set?.printedTotal}</p>
                 </div>
 
@@ -206,7 +206,7 @@ export default function CardDetailModal({ cardId, prefetchedCard, onClose }) {
                             ))}
                           </div>
                         </div>
-                        {atk.damage && <span style={{ ...px, fontSize: '11px', color: '#ff4444' }}>{atk.damage}</span>}
+                        {atk.damage && <span style={{ ...px, fontSize: '11px', color: 'var(--color-accent' }}>{atk.damage}</span>}
                       </div>
                       {atk.text && <p style={{ fontFamily: 'var(--font-body)', fontSize: '14px', color: 'var(--color-muted)', lineHeight: '1.5' }}>{atk.text}</p>}
                     </div>
@@ -227,7 +227,7 @@ export default function CardDetailModal({ cardId, prefetchedCard, onClose }) {
                 width: '100%',
                 ...(inCollection
                   ? { background: 'transparent', border: '2px solid #333', color: '#555' }
-                  : { background: '#cc0000', border: '2px solid #880000', color: '#fff' }
+                  : { background: 'var(--color-blue-dark)', border: '2px solid var(--color-blue-deep)', color: '#fff' }
                 )
               }}
             >

@@ -26,26 +26,6 @@ const RARITIES = [
   'Amazing Rare',
   'LEGEND']
 
-const selStyle = {
-  background: '#0a0a0a',
-  border: '1px solid #333',
-  color: '#aaa',
-  fontFamily: 'var(--font-display)',
-  fontSize: '8px',
-  letterSpacing: '1px',
-  padding: '5px 8px',
-  borderRadius: '3px',
-  outline: 'none',
-  cursor: 'pointer',
-}
-
-const activeSelStyle = {
-  ...selStyle,
-  border: '1px solid var(--color-accent)',
-  color: 'var(--color-accent)',
-  background: '#1a0000',
-}
-
 export default function FilterPanel() {
   const dispatch = useDispatch()
   const { type, set, rarity } = useSelector(s => s.filters)
@@ -57,54 +37,39 @@ export default function FilterPanel() {
   const sets = [...(setsData?.data ?? [])].reverse()
   const hasFilters = type || set || rarity
 
+  const selStyle = (active) => ({
+    background: active ? '#0a1a3a' : '#0a1a3a',
+    border: `1px solid ${active ? '#4aaeff' : 'var(--color-blue)'}`,
+    borderRadius: '3px',
+    padding: '5px 8px',
+    color: active ? '#4aaeff' : '#aac8ff',
+    fontFamily: 'var(--font-display)',
+    fontSize: '8px',
+    outline: 'none',
+    cursor: 'pointer',
+    letterSpacing: '1px',
+  })
+
   return (
-    <div className="flex items-center gap-2 flex-wrap">
-      <select
-        value={type}
-        onChange={e => dispatch(setType(e.target.value))}
-        style={type ? activeSelStyle : selStyle}
-      >
+    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+      <select value={type} onChange={e => dispatch(setType(e.target.value))} style={selStyle(!!type)}>
         <option value="">TYPE</option>
         {TYPES.map(t => <option key={t} value={t}>{t.toUpperCase()}</option>)}
       </select>
-
-      <select
-        value={set}
-        onChange={e => dispatch(setSet(e.target.value))}
-        style={set ? activeSelStyle : selStyle}
-      >
-        <option value="">
-          {isLoading ? 'LOADING...' : isError ? 'ERROR' : 'SET'}
-        </option>
-        {!isLoading && !isError && sets.map(s => (
-          <option key={s.id} value={s.id}>{s.name.toUpperCase()}</option>
-        ))}
+      <select value={set} onChange={e => dispatch(setSet(e.target.value))} style={selStyle(!!set)}>
+        <option value="">{isLoading ? 'LOADING...' : isError ? 'ERROR' : 'SET'}</option>
+        {!isLoading && !isError && sets.map(s => <option key={s.id} value={s.id}>{s.name.toUpperCase()}</option>)}
       </select>
-
-      <select
-        value={rarity}
-        onChange={e => dispatch(setRarity(e.target.value))}
-        style={rarity ? activeSelStyle : selStyle}
-      >
+      <select value={rarity} onChange={e => dispatch(setRarity(e.target.value))} style={selStyle(!!rarity)}>
         <option value="">RARITY</option>
         {RARITIES.map(r => <option key={r} value={r}>{r.toUpperCase()}</option>)}
       </select>
-
       {hasFilters && (
-        <button
-          onClick={() => dispatch(resetFilters())}
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '6px',
-            color: '#555',
-            background: 'transparent',
-            border: '1px solid #333',
-            padding: '5px 8px',
-            borderRadius: '3px',
-            cursor: 'pointer',
-            letterSpacing: '1px',
-          }}
-        >CLEAR ✕</button>
+        <button onClick={() => dispatch(resetFilters())} style={{
+          background: 'none', border: '1px solid #333', borderRadius: '3px',
+          padding: '3px 6px', color: '#555', fontFamily: 'var(--font-display)',
+          fontSize: '6px', cursor: 'pointer', letterSpacing: '1px',
+        }}>CLEAR ✕</button>
       )}
     </div>
   )

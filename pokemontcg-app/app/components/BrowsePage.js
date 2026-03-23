@@ -13,7 +13,7 @@ export default function BrowsePage() {
   }, [selectedCard])
 
   return (
-    <div className="p-4 sm:p-6">
+    <div>
       <CardGrid onCardClick={setSelectedCard} />
       {selectedCard && (
         <CardDetailModal

@@ -6,17 +6,21 @@
 :root {
   --font-display: 'Press Start 2P', monospace;
   --font-body: 'DM Sans', sans-serif;
-  --color-bg: #1a0000;
-  --color-surface: #0a0a0a;
-  --color-surface2: #111111;
+  --color-bg: #0a1628;
+  --color-surface: #0d1f3c;
+  --color-surface2: #122d5e;
   --color-border: rgba(255,255,255,0.08);
-  --color-accent: #ff4444;
+  --color-accent: #4aaeff;
   --color-accent2: #ffd700;
   --color-text: #eeeeee;
-  --color-muted: #666666;
-  --color-red: #cc0000;
-  --color-red-dark: #880000;
-  --color-red-deep: #660000;
+  --color-muted: #6688aa;
+  --color-blue: #2255a0;
+  --color-blue-dark: #1a3d7a;
+  --color-blue-deep: #122d5e;
+  --color-screen-bg: #e8f0ff;
+  --color-list-bg: #d4e8ff;
+  --color-row-bg: #b8d4f8;
+  --color-row-border: #a0c0e8;
 }
 
 * { box-sizing: border-box; }
@@ -29,9 +33,9 @@ body {
   min-height: 100vh;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: var(--color-red-dark); border-radius: 3px; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-blue-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-blue); border-radius: 2px; }
 
 @keyframes shimmer {
   0%   { background-position: -400px 0; }
@@ -43,10 +47,15 @@ body {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
 
 .shimmer {
-  background: linear-gradient(90deg, #111 25%, #1a0000 50%, #111 75%);
+  background: linear-gradient(90deg, #b8d4f8 25%, #d0e4ff 50%, #b8d4f8 75%);
   background-size: 400px 100%;
   animation: shimmer 1.4s infinite;
 }
 .card-anim { animation: fadeUp 0.35s ease both; }
+.slide-in  { animation: slideIn 0.2s ease both; }

@@ -15,45 +15,34 @@ export default function SearchBar() {
   }, [local, dispatch])
 
   return (
-    <div className="relative flex items-center gap-2">
-      <span style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: '6px',
-        color: '#838383',
-        letterSpacing: '1px',
-        whiteSpace: 'nowrap'
-      }}>SEARCH:</span>
-      <div className="relative flex-1">
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <span style={{ fontFamily: 'var(--font-display)', fontSize: '7px', color: '#aac8ff', letterSpacing: '1px', whiteSpace: 'nowrap' }}>SEARCH:</span>
+      <div style={{ position: 'relative', flex: 1 }}>
         <input
           type="text"
           placeholder="enter name..."
           value={local}
           onChange={e => setLocal(e.target.value)}
           style={{
-            background: '#0a0a0a',
-            border: '1px solid var(--color-accent)',
-            color: 'var(--color-accent)',
+            width: '100%',
+            background: '#0a1a3a',
+            border: '1px solid var(--color-blue)',
+            borderRadius: '3px',
+            padding: '4px 28px 4px 8px',
+            color: '#4aaeff',
             fontFamily: 'var(--font-display)',
-            fontSize: '8px',
+            fontSize: '9px',
+            outline: 'none',
             letterSpacing: '1px',
           }}
-          className="w-full px-3 py-2 rounded outline-none placeholder:text-red-900 placeholder:text-xs"
         />
+        {local && (
+          <button onClick={() => setLocal('')} style={{
+            position: 'absolute', right: '6px', top: '50%', transform: 'translateY(-50%)',
+            background: 'none', border: 'none', color: '#4aaeff', cursor: 'pointer', fontSize: '10px', padding: 0,
+          }}>✕</button>
+        )}
       </div>
-      {local && (
-        <button
-          onClick={() => setLocal('')}
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '7px',
-            color: 'var(--color-muted)',
-            background: '#111',
-            border: '1px solid #333',
-            padding: '4px 6px',
-            borderRadius: '3px',
-          }}
-        >✕</button>
-      )}
     </div>
   )
 }
